@@ -16,6 +16,7 @@ const crypto = require("crypto");
  * @access  Public
  */
 const register = asyncHandler(async (req, res) => {
+  console.log("Received registration request:", req.body);
   const { firstName, lastName, email, password, major, graduationYear } =
     req.body;
   console.log("Registering user:", req.body);
@@ -33,7 +34,10 @@ const register = asyncHandler(async (req, res) => {
   });
 
   if (!collegeInfo) {
-    throw new ApiError(400, "Your email domain is not associated with an active college. Please contact support.");
+    throw new ApiError(
+      400,
+      "Your email domain is not associated with an active college. Please contact support.",
+    );
   }
 
   // Generate email verification token
@@ -55,7 +59,7 @@ const register = asyncHandler(async (req, res) => {
   });
 
   // Send verification email
-//   await EmailService.sendVerificationEmail(user.email, verificationToken);
+  //   await EmailService.sendVerificationEmail(user.email, verificationToken);
 
   // Log activity
   await AnalyticsService.logActivity({

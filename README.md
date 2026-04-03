@@ -40,7 +40,6 @@ A comprehensive REST API for the College Hackathon Companion application, helpin
 - **Email**: Nodemailer
 - **Real-time**: Socket.io
 - **Validation**: Joi
-- **Documentation**: Swagger/OpenAPI 3.0
 - **Testing**: Jest + Supertest
 - **Task Scheduling**: node-cron
 
@@ -118,10 +117,6 @@ npm run test:watch # Run tests in watch mode
 npm run test:coverage # Run tests with coverage report
 npm run lint       # Run ESLint
 ```
-
-## API Documentation
-
-Interactive API documentation is available at `/api-docs` when the server is running.
 
 ### Base URL
 ```
