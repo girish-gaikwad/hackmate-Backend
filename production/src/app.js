@@ -2,6 +2,7 @@ const express = require("express");
 const cors = require("cors");
 const helmet = require("helmet");
 const authRoutes = require("./routes/auth");
+const profileRoutes = require("./routes/profile");
 const { errorHandler } = require("./middleware/errorHandler");
 const { sendSuccess } = require("./utils/response");
 
@@ -24,7 +25,7 @@ app.get("/", (req, res) => {
 
 // API Routes
 app.use("/api/auth", authRoutes);
-
+app.use("/api/profile", profileRoutes);
 // 404 handler
 app.use((req, res) => {
   return res.status(404).json({

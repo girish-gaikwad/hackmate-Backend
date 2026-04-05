@@ -32,6 +32,7 @@ module.exports = {
     DATABASE_ERROR: "Database error occurred",
     ALREADY_VERIFIED: "Email already verified",
     NOT_VERIFIED: "Email not verified. Please verify your email first",
+    INCOMPLETE_PROFILE: "Please complete your profile to access this resource",
   },
 
   // HTTP status codes

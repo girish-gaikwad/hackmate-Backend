@@ -17,6 +17,60 @@ const userSchema = new mongoose.Schema(
       required: true,
       minlength: 8,
     },
+    name: {
+      type: String,
+      trim: true,
+    },
+    phone: {
+      type: String,
+      trim: true,
+      default: "",
+    },
+    username: {
+      type: String,
+      trim: true,
+      unique: true,
+    },
+    profilePicture: {
+      type: String,
+      default: null,
+    },
+    bio: {
+      type: String,
+      default: "",
+    },
+    skills: {
+      type: [String],
+      default: [],
+    },
+    socialLinks: {
+      type: Map,
+      of: String,
+      default: {},
+    },
+    stats: {
+      hackathonsParticipated: {
+        type: Number,
+        default: 0,
+      },
+      hackathonsWon: {
+        type: Number,
+        default: 0,
+      },
+      lastActive: {
+        type: Date,
+        default: null,
+      },
+    },
+    clg : {
+        type : String,
+        trim : true,
+        default : "",
+    },
+    year : {
+        type : Number,
+        default : null,
+    },
     isEmailVerified: {
       type: Boolean,
       default: false,
@@ -32,6 +86,10 @@ const userSchema = new mongoose.Schema(
     otpExpiry: {
       type: Date,
       default: null,
+    },
+    isProfileComplete: {
+      type: Boolean,
+      default: false,
     },
     lastRegistrationOTPSentAt: {
       type: Date,

@@ -3,7 +3,8 @@ const rateLimit = require("express-rate-limit");
 const AuthController = require("../controllers/authController");
 const { authMiddleware } = require("../middleware/auth");
 const { asyncHandler } = require("../middleware/errorHandler");
-const { validateRequest, schemas } = require("../utils/validation");
+const { schemas } = require("../utils/authValidation");
+const { validateRequest } = require("../utils/validateRequest");
 const config = require("../config/env");
 
 const router = express.Router();

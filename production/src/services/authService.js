@@ -62,6 +62,7 @@ class AuthService {
         otpExpiry,
         lastRegistrationOTPSentAt: new Date(),
         isEmailVerified: false,
+        isProfileComplete: false,
       },
       { upsert: true, new: true }
     );
@@ -168,6 +169,7 @@ class AuthService {
 
     // Store refresh token
     user.refreshTokens.push({ token: tokens.refreshToken });
+    user.stats.lastActive = new Date();
     await user.save();
 
     return {
