@@ -3,6 +3,7 @@ const cors = require("cors");
 const helmet = require("helmet");
 const authRoutes = require("./routes/auth");
 const profileRoutes = require("./routes/profile");
+const hackathonsRoutes = require("./routes/hackathons");
 const { errorHandler } = require("./middleware/errorHandler");
 const { sendSuccess } = require("./utils/response");
 
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 // API Routes
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
+app.use("/api/hackathons", hackathonsRoutes);
 // 404 handler
 app.use((req, res) => {
   return res.status(404).json({
