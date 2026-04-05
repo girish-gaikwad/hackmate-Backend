@@ -1,18 +1,29 @@
 const mongoose = require("mongoose");
 const config = require("../config/env");
 
+let cachedConnection = null;
+let cachedConnectionPromise = null;
+
 const connectDB = async () => {
+  if (cachedConnection) {
+    return cachedConnection;
+  }
+
+  if (cachedConnectionPromise) {
+    return cachedConnectionPromise;
+  }
+
   try {
-    const conn = await mongoose.connect(config.MONGODB_URI, {
-      useNewUrlParser: true,
-      useUnifiedTopology: true,
-    });
+    cachedConnectionPromise = mongoose.connect(config.MONGODB_URI);
+    const conn = await cachedConnectionPromise;
+    cachedConnection = conn;
 
     console.log(`MongoDB Connected: ${conn.connection.host}`);
     return conn;
   } catch (error) {
+    cachedConnectionPromise = null;
     console.error("MongoDB Connection Error:", error.message);
-    process.exit(1);
+    throw error;
   }
 };
 

@@ -6,6 +6,7 @@ const profileRoutes = require("./routes/profile");
 const hackathonsRoutes = require("./routes/hackathons");
 const teamRoutes = require("./routes/team");
 const resourceRoutes = require("./routes/resource");
+const connectDB = require("./config/database");
 const { errorHandler } = require("./middleware/errorHandler");
 const { sendSuccess } = require("./utils/response");
 
@@ -16,6 +17,16 @@ app.use(helmet()); // Security headers
 app.use(cors()); // Enable CORS
 app.use(express.json()); // Parse JSON
 app.use(express.urlencoded({ extended: true })); // Parse URL-encoded
+
+// In serverless deployments (Vercel), this guarantees DB is connected before queries run.
+app.use(async (req, res, next) => {
+  try {
+    await connectDB();
+    next();
+  } catch (error) {
+    next(error);
+  }
+});
 
 // Health check route
 app.get("/health", (req, res) => {
