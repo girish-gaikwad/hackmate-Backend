@@ -43,6 +43,81 @@ const userSchema = new mongoose.Schema(
       type: [String],
       default: [],
     },
+    level: {
+      type: String,
+      enum: ["beginner", "intermediate", "advanced"],
+      default: "beginner",
+    },
+    previousProjects: {
+      type: [
+        {
+          title: {
+            type: String,
+            required: true,
+            trim: true,
+          },
+          description: {
+            type: String,
+            default: "",
+            trim: true,
+          },
+          link: {
+            type: String,
+            default: "",
+            trim: true,
+          },
+          techStack: {
+            type: [String],
+            default: [],
+          },
+          completedAt: {
+            type: Date,
+            default: null,
+          },
+        },
+      ],
+      default: [],
+    },
+    bookmarkedHackathons: {
+      type: [
+        {
+          source: {
+            type: String,
+            enum: ["unstop", "devpost", "other"],
+            required: true,
+          },
+          sourceId: {
+            type: String,
+            required: true,
+          },
+          title: {
+            type: String,
+            required: true,
+            trim: true,
+          },
+          url: {
+            type: String,
+            default: "",
+            trim: true,
+          },
+          thumbnailUrl: {
+            type: String,
+            default: "",
+            trim: true,
+          },
+          organization: {
+            type: String,
+            default: "",
+            trim: true,
+          },
+          bookmarkedAt: {
+            type: Date,
+            default: Date.now,
+          },
+        },
+      ],
+      default: [],
+    },
     socialLinks: {
       type: Map,
       of: String,

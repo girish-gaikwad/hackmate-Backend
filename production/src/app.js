@@ -4,6 +4,8 @@ const helmet = require("helmet");
 const authRoutes = require("./routes/auth");
 const profileRoutes = require("./routes/profile");
 const hackathonsRoutes = require("./routes/hackathons");
+const teamRoutes = require("./routes/team");
+const resourceRoutes = require("./routes/resource");
 const { errorHandler } = require("./middleware/errorHandler");
 const { sendSuccess } = require("./utils/response");
 
@@ -28,6 +30,8 @@ app.get("/", (req, res) => {
 app.use("/api/auth", authRoutes);
 app.use("/api/profile", profileRoutes);
 app.use("/api/hackathons", hackathonsRoutes);
+app.use("/api/teams", teamRoutes);
+app.use("/api/resources", resourceRoutes);
 // 404 handler
 app.use((req, res) => {
   return res.status(404).json({

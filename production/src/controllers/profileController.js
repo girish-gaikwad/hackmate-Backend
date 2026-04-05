@@ -24,9 +24,11 @@ class ProfileController{
                     name : user.name, 
                     username: user.username,
                     phone: user.phone,
+                    level: user.level,
                     profilePicture: user.profilePicture,
                     bio: user.bio,
                     skills: user.skills,
+                    previousProjects: user.previousProjects,
                     socialLinks: user.socialLinks,
                     clg : user.clg,
                     year : user.year,
@@ -72,15 +74,29 @@ class ProfileController{
                 });
             }
 
-            const { name, username, phone, profilePicture, bio, skills, socialLinks,clg,year } = req.body;
+            const {
+                name,
+                username,
+                phone,
+                level,
+                profilePicture,
+                bio,
+                skills,
+                previousProjects,
+                socialLinks,
+                clg,
+                year,
+            } = req.body;
 
             // Update fields if they are provided
             if (name !== undefined) user.name = name;
             if (username !== undefined) user.username = username;
             if (phone !== undefined) user.phone = phone;
+            if (level !== undefined) user.level = level;
             if (profilePicture !== undefined) user.profilePicture = profilePicture;
             if (bio !== undefined) user.bio = bio;
             if (skills !== undefined) user.skills = skills;
+            if (previousProjects !== undefined) user.previousProjects = previousProjects;
             if (socialLinks !== undefined) user.socialLinks = socialLinks;
             if (clg !== undefined) user.clg = clg;
             if (year !== undefined) user.year = year;
@@ -106,9 +122,11 @@ class ProfileController{
                     email: user.email,
                     username: user.username,
                     phone: user.phone,
+                    level: user.level,
                     profilePicture: user.profilePicture,
                     bio: user.bio,
                     skills: user.skills,
+                    previousProjects: user.previousProjects,
                     socialLinks: user.socialLinks,
                     isProfileComplete: user.isProfileComplete,
                 },
