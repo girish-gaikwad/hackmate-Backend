@@ -1,0 +1,30 @@
+{
+  "name": "hackmate-restructured-backend",
+  "version": "1.0.0",
+  "description": "Production Express backend with OTP-based authentication",
+  "main": "production/server.js",
+  "scripts": {
+    "start": "nodemon production/server.js",
+    "dev": "nodemon production/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": ["express", "auth", "jwt", "otp"],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.0.0",
+    "express": "^5.2.1",
+    "express-rate-limit": "^7.0.0",
+    "helmet": "^7.0.0",
+    "joi": "^17.11.0",
+    "jsonwebtoken": "^9.0.0",
+    "mongoose": "^7.0.0",
+    "resend": "^3.0.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
