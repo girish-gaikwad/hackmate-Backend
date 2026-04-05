@@ -2,8 +2,10 @@ const express = require("express");
 const { authMiddleware } = require("../middleware/auth");
 const { asyncHandler } = require("../middleware/errorHandler");
 const TeamController = require("../controllers/teamController");
+const ChatController = require("../controllers/chatController");
 const { validateRequest } = require("../utils/validateRequest");
 const { schemas } = require("../utils/teamValidation");
+const { sendMessageSchema } = require("../utils/chatValidation");
 
 const router = express.Router();
 
@@ -51,6 +53,32 @@ router.patch(
   authMiddleware,
   validateRequest(schemas.respondJoinRequest),
   asyncHandler(TeamController.respondToJoinRequest)
+);
+
+// Chat routes - polling based
+router.post(
+  "/:teamId/chat",
+  authMiddleware,
+  validateRequest(sendMessageSchema, "body"),
+  asyncHandler(ChatController.sendMessage)
+);
+
+router.get(
+  "/:teamId/chat",
+  authMiddleware,
+  asyncHandler(ChatController.getMessages)
+);
+
+router.get(
+  "/:teamId/chat/recent",
+  authMiddleware,
+  asyncHandler(ChatController.getRecentMessages)
+);
+
+router.delete(
+  "/:teamId/chat/:messageId",
+  authMiddleware,
+  asyncHandler(ChatController.deleteMessage)
 );
 
 module.exports = router;
