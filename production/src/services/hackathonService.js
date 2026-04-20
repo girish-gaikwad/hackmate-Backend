@@ -92,7 +92,12 @@ async function fetchJson(url, headers, timeoutMs) {
       throw new Error(`Request failed (${response.status}) for ${url}`);
     }
 
-    return response.json();
+    const text = await response.text();
+    try {
+      return JSON.parse(text);
+    } catch (e) {
+      throw new Error(`JSON parse error for ${url}. Response starts with: ${text.substring(0, 50)}`);
+    }
   } finally {
     timeout.clear();
   }
